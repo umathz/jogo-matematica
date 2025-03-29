@@ -3,175 +3,420 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora com Botões</title>
+    <title>Calculadora Infantil</title>
     <style>
         body {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #e6f5d0, #c2e0c6);
+            font-family: 'Bubblegum Sans', cursive;
             margin: 0;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f9f3e0;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 15px 30px rgba(139, 69, 19, 0.3);
+            border: 10px solid #8b4513;
+            position: relative;
+            overflow: hidden;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .content-wrapper::before {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 5px dashed #a2c46d;
+            border-radius: 25px;
+            pointer-events: none;
         }
 
         .container {
             display: flex;
-            gap: 20px;
+            gap: 30px;
+            align-items: center;
+            margin-bottom: 30px;
+            width: 100%;
+            justify-content: center;
         }
 
         .nivel {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 100px;
-            height: 150px;
-            margin: 5px;
-            background-color: #007bff;
+            width: 120px;
+            height: 180px;
+            margin: 10px;
+            background-color: #a2c46d;
             color: white;
-            border-radius: 8px;
+            border-radius: 20px;
             cursor: pointer;
-            font-size: 24px;
+            font-size: 28px;
             user-select: none;
             position: relative;
             flex-direction: column;
+            box-shadow: 8px 8px 0 #8b4513;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 4px solid #8b4513;
+        }
+
+        .nivel:hover {
+            transform: translateY(-8px);
+            box-shadow: 12px 12px 0 #8b4513;
         }
 
         .nivel input {
             width: 90%;
             height: 50%;
-            font-size: 28px;
+            font-size: 36px;
             text-align: center;
             background: transparent;
             border: none;
-            color: white;
+            color: #5a3921;
             outline: none;
+            font-weight: bold;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
         }
 
-
-
         .mensagem {
-            font-size: 18px;
-            color: yellow;
-            margin-top: 10px;
+            font-size: 26px;
+            font-weight: bold;
+            margin: 30px 0;
+            text-align: center;
+            padding: 20px 30px;
+            border-radius: 15px;
+            display: inline-block;
+            width: 100%;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+            border: 4px dashed;
+        }
+
+        .acerto {
+            background-color: #a2c46d;
+            color: #5a3921;
+            box-shadow: 0 6px 12px rgba(162, 196, 109, 0.4);
+            animation: pulse 0.5s;
+            border-color: #8b4513;
+        }
+
+        .erro {
+            background-color: #e6a57e;
+            color: #5a3921;
+            box-shadow: 0 6px 12px rgba(230, 165, 126, 0.4);
+            animation: shake 0.5s;
+            border-color: #8b4513;
         }
 
         .operador {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 100px; /* Igual ao tamanho dos outros botões */
-            height: 150px;
-            margin: 5px;
-            background-color: #007bff;
-            color: white;
-            border-radius: 8px;
-            font-size: 40px;
+            width: 120px;
+            height: 180px;
+            margin: 10px;
+            background-color: #e6a57e;
+            color: #5a3921;
+            border-radius: 20px;
+            font-size: 50px;
             user-select: none;
             cursor: pointer;
+            box-shadow: 8px 8px 0 #8b4513;
+            transition: transform 0.2s, background-color 0.2s;
+            font-weight: bold;
+            border: 4px solid #8b4513;
+        }
+
+        .operador:hover {
+            transform: scale(1.08);
+            background-color: #d98e5f;
+        }
+
+        #reiniciar {
+            background-color: #a2c46d;
+            color: #5a3921;
+            border: 4px solid #8b4513;
+            padding: 15px 30px;
+            font-size: 22px;
+            border-radius: 15px;
+            cursor: pointer;
+            margin: 20px 0;
+            display: block;
+            width: 100%;
+            font-weight: bold;
+            box-shadow: 8px 8px 0 #8b4513;
+            transition: all 0.3s ease;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        #reiniciar:hover {
+            background-color: #8fb359;
+            transform: translateY(-8px);
+            box-shadow: 12px 12px 0 #8b4513;
+        }
+
+        #reiniciar:active {
+            transform: translateY(0);
+            box-shadow: 5px 5px 0 #8b4513;
+        }
+
+        .btn-voltar {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #e6a57e;
+            color: #5a3921;
+            border: 4px solid #8b4513;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 5px 5px 0 #8b4513;
+            transition: all 0.3s ease;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        .btn-voltar:hover {
+            background-color: #d98e5f;
+            transform: translateY(-5px);
+            box-shadow: 8px 8px 0 #8b4513;
+        }
+
+        .dificuldade-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .btn-dificuldade {
+            background-color: #e6a57e;
+            color: #5a3921;
+            border: 4px solid #8b4513;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 5px 5px 0 #8b4513;
+            transition: all 0.3s ease;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        .btn-dificuldade:hover {
+            transform: translateY(-5px);
+            box-shadow: 8px 8px 0 #8b4513;
+        }
+
+        .btn-dificuldade.ativo {
+            background-color: #a2c46d;
+            transform: translateY(-5px);
+            box-shadow: 8px 8px 0 #8b4513;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+            20%, 40%, 60%, 80% { transform: translateX(8px); }
+        }
+
+        h1 {
+            color: #8b4513;
+            text-align: center;
+            margin: 0 0 20px 0;
+            font-size: 40px;
+            text-shadow: 3px 3px 0 #d4e6a5;
+        }
+
+        .nivel::after, .operador::after {
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 3px dotted #8b4513;
+            border-radius: 20px;
+            pointer-events: none;
+            opacity: 0.3;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="nivel">
-            <input type="text" id="num1" placeholder="0" readonly>
+    <a href="index.html" class="btn-voltar">⬅ Voltar</a>
+    
+    <div class="content-wrapper">
+        <h1>☘️ KIDS MATH 🍂</h1>
+        
+        <div class="dificuldade-container">
+            <button class="btn-dificuldade ativo" onclick="mudarDificuldade('facil')">Fácil</button>
+            <button class="btn-dificuldade" onclick="mudarDificuldade('medio')">Médio</button>
+            <button class="btn-dificuldade" onclick="mudarDificuldade('dificil')">Difícil</button>
         </div>
         
-        <!-- Botão "+" ajustado -->
-        <div class="operador">+</div>
-        
-        <div class="nivel">
-            <input type="text" id="num2" placeholder="0" readonly>
+        <div class="container">
+            <div class="nivel">
+                <input type="text" id="num1" placeholder="0" readonly>
+            </div>
+            
+            <div class="operador">+</div>
+            
+            <div class="nivel">
+                <input type="text" id="num2" placeholder="0" readonly>
+            </div>
+            
+            <div class="nivel" onclick="calcular()">
+                <input type="text" id="resultado" placeholder="?">
+            </div>
+        </div>
 
-        </div>
-        
-        <div class="nivel" onclick="calcular()">
-            <input type="text" id="resultado" placeholder="Resultado">
-        </div>
+        <div id="mensagem" class="mensagem"></div>
     </div>
 
-    <div id="mensagem" class="mensagem"></div>
+    <script>
+        // Variável para controlar a dificuldade
+        let dificuldade = 'facil';
+        let min = 1;
+        let max = 10;
 
-     <script>
-      // Função para gerar números aleatórios entre um valor mínimo e máximo
-function gerarNumero(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+        // Função para mudar a dificuldade
+        function mudarDificuldade(nivel) {
+            dificuldade = nivel;
+            
+            // Atualiza os botões de dificuldade
+            document.querySelectorAll('.btn-dificuldade').forEach(btn => {
+                btn.classList.remove('ativo');
+            });
+            event.target.classList.add('ativo');
+            
+            // Define os intervalos de números conforme a dificuldade
+            switch(nivel) {
+                case 'facil':
+                    min = 1;
+                    max = 10;
+                    break;
+                case 'medio':
+                    min = 10;
+                    max = 50;
+                    break;
+                case 'dificil':
+                    min = 50;
+                    max = 100;
+                    break;
+            }
+            
+            // Gera um novo problema com a dificuldade selecionada
+            gerarProblema();
+        }
 
-// Função para definir os números
-function gerarProblema() {
-    const num1 = gerarNumero(1, 10); // Números aleatórios entre 1 e 10
-    const num2 = gerarNumero(1, 10);
-    document.getElementById("num1").value = num1;
-    document.getElementById("num2").value = num2;
-    document.getElementById("resultado").value = ''; // Limpa o campo de resultado
-    document.getElementById("mensagem").innerText = ''; // Limpa a mensagem
-    document.getElementById("resultado").focus(); // Coloca o foco no campo de resposta
-}
+        // Função para gerar números aleatórios entre um valor mínimo e máximo
+        function gerarNumero() {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
 
-// Função de cálculo e verificação
-function calcular() {
-    const num1 = parseFloat(document.getElementById("num1").value) || 0;
-    const num2 = parseFloat(document.getElementById("num2").value) || 0;
-    const resultado = num1 + num2;
-    const respostaUsuario = parseFloat(document.getElementById("resultado").value) || 0;
+        // Função para definir os números
+        function gerarProblema() {
+            const num1 = gerarNumero();
+            const num2 = gerarNumero();
+            document.getElementById("num1").value = num1;
+            document.getElementById("num2").value = num2;
+            document.getElementById("resultado").value = ''; // Limpa o campo de resultado
+            
+            // Resetar mensagem
+            const mensagem = document.getElementById("mensagem");
+            mensagem.innerText = '';
+            mensagem.className = 'mensagem';
+            
+            document.getElementById("resultado").focus(); // Coloca o foco no campo de resposta
+        }
 
-    // Verifica se a resposta do usuário está correta
-    if (respostaUsuario === resultado) {
-        document.getElementById("mensagem").innerText = 'Você acertou!';
-        document.getElementById("mensagem").style.color = 'green';
-        
-        // Gera um novo problema após o cálculo correto
-        setTimeout(gerarProblema, 1000); // Espera 1 segundo antes de gerar novo problema
-    } else {
-        document.getElementById("mensagem").innerText = 'Game Over!';
-        document.getElementById("mensagem").style.color = 'red';
-        
-        // Desabilita os campos e cria botão para jogar novamente
-        document.getElementById("resultado").disabled = true;
-        criarBotaoReiniciar();
-    }
-}
+        // Função de cálculo e verificação
+        function calcular() {
+            const num1 = parseFloat(document.getElementById("num1").value) || 0;
+            const num2 = parseFloat(document.getElementById("num2").value) || 0;
+            const resultado = num1 + num2;
+            const respostaUsuario = parseFloat(document.getElementById("resultado").value) || 0;
+            const mensagem = document.getElementById("mensagem");
 
-// Função para criar botão de reiniciar
-function criarBotaoReiniciar() {
-    // Remove o botão anterior se existir
-    const botaoAntigo = document.getElementById("reiniciar");
-    if (botaoAntigo) {
-        botaoAntigo.remove();
-    }
-    
-    // Cria novo botão
-    const botao = document.createElement("button");
-    botao.id = "reiniciar";
-    botao.innerText = "Jogar Novamente";
-    botao.style.marginTop = "10px";
-    botao.onclick = function() {
-        // Habilita o campo de resultado novamente
-        document.getElementById("resultado").disabled = false;
-        // Gera novo problema
+            // Verifica se a resposta do usuário está correta
+            if (respostaUsuario === resultado) {
+                mensagem.innerText = '🎉 Você acertou! 🎊';
+                mensagem.className = 'mensagem acerto';
+                
+                // Gera um novo problema após o cálculo correto
+                setTimeout(gerarProblema, 1000); // Espera 1 segundo antes de gerar novo problema
+            } else {
+                mensagem.innerText = '😢 Oops! Tente novamente! 🧐';
+                mensagem.className = 'mensagem erro';
+                
+                // Desabilita os campos e cria botão para jogar novamente
+                document.getElementById("resultado").disabled = true;
+                criarBotaoReiniciar();
+            }
+        }
+
+        // Função para criar botão de reiniciar
+        function criarBotaoReiniciar() {
+            // Remove o botão anterior se existir
+            const botaoAntigo = document.getElementById("reiniciar");
+            if (botaoAntigo) {
+                botaoAntigo.remove();
+            }
+            
+            // Cria novo botão
+            const botao = document.createElement("button");
+            botao.id = "reiniciar";
+            botao.innerText = "Jogar Novamente!";
+            botao.onclick = function() {
+                // Habilita o campo de resultado novamente
+                document.getElementById("resultado").disabled = false;
+                // Gera novo problema
+                gerarProblema();
+                // Remove o botão
+                botao.remove();
+            };
+            
+            // Adiciona o botão abaixo da mensagem
+            document.getElementById("mensagem").after(botao);
+        }
+
+        // Função que detecta a tecla "Enter" pressionada
+        document.getElementById("resultado").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                calcular();
+            }
+        });
+
+        // Evitar que o campo de resultado ative qualquer ação indesejada ao clicar
+        document.getElementById("resultado").addEventListener("click", function(event) {
+            event.stopPropagation(); // Impede a propagação do evento
+        });
+
+        // Gera o primeiro problema assim que a página for carregada
         gerarProblema();
-        // Remove o botão
-        botao.remove();
-    };
-    
-    // Adiciona o botão abaixo da mensagem
-    document.getElementById("mensagem").after(botao);
-}
-// Função que detecta a tecla "Enter" pressionada
-document.getElementById("resultado").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        calcular();
-    }
-});
-
-// Evitar que o campo de resultado ative qualquer ação indesejada ao clicar
-document.getElementById("resultado").addEventListener("click", function(event) {
-    event.stopPropagation(); // Impede a propagação do evento
-});
-
-// Gera o primeiro problema assim que a página for carregada
-gerarProblema();
     </script>
-
 </body>
 </html>
