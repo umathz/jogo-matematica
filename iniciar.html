@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botão de Configuração</title>
+    <style>
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Altura mínima da tela */
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    background-color: #e3e3e3;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Ícone de configuração fixado no canto superior direito */
+#config-icon {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+}
+
+/* Estilo para o container de níveis */
+.nivel-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+.nivel {
+    width: 150px;
+    height: 80px;
+    background-color: #3498db;
+    border-radius: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+.nivel-hover {
+    transform: scale(1.05);
+    align-items: center;
+}
+
+.nivel-numero {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nivel-info {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.estrelas img {
+    width: 20px;
+    height: 20px;
+}
+
+.tempo {
+    color: black;
+    font-size: 12px;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Container geral -->
+    <div class="container">
+        <!-- Botão de Configuração -->
+        <div style="position: relative;">
+            <img src="imagens/Configuração.png" alt="Configuração" id="config-icon">
+        </div>
+
+        <!-- Botões de níveis lado a lado -->
+        <div class="nivel-container">
+            <!-- Nível 1 -->
+            <div class="nivel">
+                <div class="nivel-numero">1</div>
+                <div class="nivel-info">
+                    <div class="estrelas">
+                        <img src="imagens/estrela.png" alt="estrela" class="estrela">
+                        <img src="imagens/estrela.png" alt="estrela" class="estrela">
+                        <img src="imagens/estrela.png" alt="estrela" class="estrela">
+                    </div>
+                    <div class="tempo">00:00</div>
+                </div>
+            </div>
+
+            <!-- Nível 2 -->
+            <div class="nivel">
+                <div class="nivel-numero">2</div>
+                <div class="nivel-info">
+                    <div class="estrelas">
+                        <img src="imagens/estrela.png" alt="estrela" class="estrela">
+                        <img src="imagens/estrela.png" alt="estrela" class="estrela">
+                        <img src="imagens/estrela.png" alt="estrela" class="estrela">
+                    </div>
+                    <div class="tempo">00:00</div>
+                </div>
+            </div>
+
+            <!-- Nível 3 -->
+            <div class="nivel">
+                <div class="nivel-numero">3</div>
+                <div class="nivel-info">
+                    <div class="estrelas">
+                        <img src="imagens/estrela.png" alt="estrela" class="estrela">
+                        <img src="imagens/estrela.png" alt="estrela" class="estrela">
+                        <img src="imagens/estrela.png" alt="estrela" class="estrela">
+                    </div>
+                    <div class="tempo">00:00</div>
+                </div>
+            </div>
+
+            <!-- Nível 4 -->
+            <div class="nivel">
+                <div class="nivel-numero">4</div>
+                <div class="nivel-info">
+                    <div class="estrelas">
+                        <img src="imagens/estrela.png" alt="estrela" class="estrela">
+                        <img src="imagens/estrela.png" alt="estrela" class="estrela">
+                        <img src="imagens/estrela.png" alt="estrela" class="estrela">
+                    </div>
+                    <div class="tempo">00:00</div>
+                </div>
+            </div>
+
+            <!-- Nível 5 -->
+            <div class="nivel">
+                <div class="nivel-numero">5</div>
+                <div class="nivel-info">
+                    <div class="estrelas">
+                        <img src="imagens/estrela.png" alt="estrela" class="estrela">
+                        <img src="imagens/estrela.png" alt="estrela" class="estrela">
+                        <img src="imagens/estrela.png" alt="estrela" class="estrela">
+                    </div>
+                    <div class="tempo">00:00</div>
+                </div>
+            </div>
+
+            <!-- Nível 6 -->
+            <div class="nivel">
+                <div class="nivel-numero">6</div>
+                <div class="nivel-info">
+                    <div class="estrelas">
+                        <img src="imagens/estrela.png" alt="estrela" class="estrela">
+                        <img src="imagens/estrela.png" alt="estrela" class="estrela">
+                        <img src="imagens/estrela.png" alt="estrela" class="estrela">
+                    </div>
+                    <div class="tempo">00:00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
