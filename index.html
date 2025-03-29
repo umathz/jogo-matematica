@@ -5,79 +5,177 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kids Math</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+        
         body {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background-color: #cce7ff;
-            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e6f5d0, #c2e0c6);
+            font-family: 'Bubblegum Sans', cursive;
             margin: 0;
+            overflow: hidden;
         }
+        
+        /* Bolinhas decorativas naturais */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(139, 195, 74, 0.2);
+            border-radius: 50%;
+            top: -50px;
+            left: -50px;
+        }
+        
+        body::after {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: rgba(121, 85, 72, 0.15);
+            border-radius: 50%;
+            bottom: -30px;
+            right: -30px;
+        }
+        
+        .title {
+            font-size: 3.5rem;
+            color: #4e342e;
+            text-shadow: 3px 3px 0 #a5d6a7, 
+                         6px 6px 0 rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
         .container {
             position: relative;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            width: 400px;
+            width: 600px;
+            height: 550px;
+            background-image: url('imagens/Corujaaaaaaaaa.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            z-index: 1;
         }
-        h1 {
-            font-size: 36px;
-            color: #ffcc00;
+        
+        .button-container {
+            position: absolute;
+            width: 60%;
+            height: 90px;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        span {
-            color: #9933ff;
-        }
-        .buttons {
-            margin-top: 20px;
-        }
+        
         button {
-            width: 150px;
-            padding: 10px;
-            font-size: 18px;
+            width: 100%;
+            padding: 20px;
+            font-size: 30px;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 15px;
             cursor: pointer;
-            margin: 10px;
+            background: linear-gradient(to bottom, #689f38, #33691e);
+            box-shadow: 0 5px 0 #1b5e20, 0 10px 20px rgba(0, 0, 0, 0.15);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-family: 'Bubblegum Sans', cursive;
         }
-        .start-btn { background-color: #007bff; }
-        .practice-btn { background-color: #28a745; }
+        
         button:hover {
-            opacity: 0.8;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 0 #1b5e20, 0 17px 20px rgba(0, 0, 0, 0.2);
         }
+        
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 3px 0 #1b5e20, 0 3px 10px rgba(0, 0, 0, 0.15);
+        }
+        
         .settings {
-            position: absolute;
-            top: 10px;
-            right: 10px;
+            position: relative;
+            top: -200px;
+            right: -130px;
             cursor: pointer;
             background: none;
             border: none;
             padding: 0;
+            width: 35px;
+            height: 35px;
+            transition: transform 0.3s ease;
+            z-index: 2;
         }
+        
+        .settings:hover {
+            transform: scale(1.1);
+        }
+        
         .settings img {
-            width: 30px;
-            height: 30px;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        /* Elementos decorativos naturais */
+        .decoration {
+            position: absolute;
+            font-size: 50px;
+            z-index: 0;
+        }
+        
+        .leaf1 {
+            top: 15%;
+            left: 10%;
+            color: #689f38;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .leaf2 {
+            bottom: 20%;
+            right: 10%;
+            color: #8d6e63;
+            animation: float 4s ease-in-out infinite 1s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
         }
     </style>
 </head>
 <body>
+    <h1 class="title">KIDS MATH</h1>
+    <div class="decoration leaf1">☘️</div>
+    <div class="decoration leaf2">🍂</div>
+    
     <div class="container">
-        <h1>KIDS <span>MATH</span></h1>
-        <div class="buttons">
-            <a href="iniciar.html" >
-            <button class="start-btn">INICIAR</button>
+        <div class="button-container">
+            <a href="iniciar.html" style="text-decoration: none;">
+                <button>INICIAR</button>
             </a>
-            <button class="practice-btn">PRATICAR</button>
         </div>
-        <a href="conf.html">
-        <button class="settings">
-            <img src="imagens/Configuração.png" alt="Configuração">
+        <a href="conf.html" class="settings">
+            <img src="imagens/Configuração.png" alt="Configurações">
         </a>
-        </button>
     </div>
 </body>
 </html>
